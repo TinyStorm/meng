@@ -1,0 +1,25 @@
+# 数据源
+# 说明 数据库的主从是目前很常见的一种形式,可在spring容器中初始化两个数据源(连接池)
+# 在注入工厂的时候指定那些包写的mapper要使用哪一个数据源,主只能有一个,从可以很多个
+# 使用场景:主数据库负责插入,从数据库负责读取,这样可以极大地提高读取和存储效率,
+# 当然数据库与数据库之间的同步还要靠手动配置(一般数据库都有提供该解决方案)
+# 此demo基于springboot2.0 + mybatis,jpa也有相关的解决方案,但也是大同小异
+spring:
+  datasource:
+    master:
+      driverClassName: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/test1?useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: root
+    slave:
+      driverClassName: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/test2?useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: root
+  application:
+    name: spirng-boot-mongodb
+  data:
+    mongodb:
+      host: 127.0.0.1
+      port: 27017
+      database: test

@@ -1,0 +1,34 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="meng.mybatis.mapper.master.StudentDao">
+
+    <!-- 此处的多对一映射非常关键,请仔细拜读,而且好像只能用xml实现这种多对一,注解实现的多对一类似hibernate的多对一不推荐使用会引发N+1问题 -->
+    <resultMap id="studentCourse" type="meng.mybatis.bean.Student">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="age" property="age"/>
+        <result column="birthday" property="birthday" javaType="Date"/>
+        <collection property="courses" ofType="meng.mybatis.bean.Course">
+            <result column="course_name" property="name"/>
+            <result column="course_id" property="id"/>
+        </collection>
+    </resultMap>
+
+    <select id="findAllStudentAndCourse" resultMap="studentCourse">
+        SELECT s.id,s.name,s.age,s.birthday,c.name as course_name,c.id as course_id
+        FROM student_course sc
+        JOIN student s ON sc.studentId = s.id
+        JOIN course c ON sc.courseId = c.id
+
+    </select>
+
+
+    <select id="findByCondition" resultType="meng.mybatis.bean.Student">
+        SELECT * FROM student
+        <where>
+            <if test="name!=null and ''!= name">name = #{name}</if>
+            <if test="age!=null and age!=0">age = #{age}</if>
+        </where>
+    </select>
+
+
+</mapper>
