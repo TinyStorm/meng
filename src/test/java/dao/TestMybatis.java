@@ -5,7 +5,9 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import meng.Application;
 import meng.mybatis.bean.Student;
+import meng.mybatis.mapper.master.CourseDao;
 import meng.mybatis.mapper.master.StudentDao;
+import meng.mybatis.mapper.master.TeacherDao;
 import meng.mybatis.mapper.slave.PersonDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,12 +28,17 @@ public class TestMybatis {
     private StudentDao studentDao;
     @Resource
     private PersonDao personDao;
+    @Resource
+    private CourseDao courseDao;
+
+    @Resource
+    private TeacherDao teacherDao;
 
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     @Test
     public void testFindAll() {
-        PageHelper.startPage(1,1);
+        PageHelper.startPage(1, 1);
         PageInfo<Student> studentPageInfo = new PageInfo<>(studentDao.findAll());
         System.out.println(studentPageInfo);
     }
@@ -65,20 +72,40 @@ public class TestMybatis {
     }
 
     @Test
-    public void testCondition(){
-        System.out.println(studentDao.findByCondition("wm",0));
+    public void testCondition() {
+        System.out.println(studentDao.findByCondition("wm", 0));
     }
 
     @Test
-    public void testMap(){
+    public void testMap() {
 
         System.out.println(studentDao.findStudentMap());
     }
 
     @Test
-    public void testLike(){
+    public void testLike() {
         System.out.println(studentDao.findByNameLike("%w%"));
     }
 
+    @Test
+    public void testCourse() {
+        System.out.println(courseDao.findAll());
+    }
 
+    /**
+     * 测试 Collection和association嵌套 引用外部 map
+     */
+    @Test
+    public void testFind() {
+        System.out.println(studentDao.findAllSct());
+        System.out.println(studentDao.findAllStudentAndCourse());
+    }
+
+    /**
+     * 注解方式多对一
+     */
+    @Test
+    public void testManyToOne() {
+        System.out.println(courseDao.findAllByAnnotation());
+    }
 }

@@ -1,18 +1,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="meng.mybatis.mapper.master.CourseDao">
     <resultMap id="courseWithTeacher" type="meng.mybatis.bean.Course">
-        <id column="id" property="id"/>
-        <result column="name" property="name"/>
+        <id column="c_id" property="id"/>
+        <result column="c_name" property="name"/>
         <association property="teacher" javaType="meng.mybatis.bean.Teacher">
-            <id property="id" column="id"></id>
+            <id property="id" column="t_id"></id>
             <result property="name" column="t_name"/>
             <result property="address" column="t_address"/>
         </association>
-
     </resultMap>
 
-    <select id="findAll">
-
-
+    <select id="findAll" resultMap="courseWithTeacher">
+        SELECT c.id as c_id,c.name as c_name,t.id AS t_id,t.name AS t_name,t.address AS t_address
+        FROM course c JOIN teacher t
+        ON c.teacher_id = t.id
     </select>
 </mapper>

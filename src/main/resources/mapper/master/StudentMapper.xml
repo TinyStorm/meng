@@ -7,18 +7,26 @@
         <result column="name" property="name"/>
         <result column="age" property="age"/>
         <result column="birthday" property="birthday" javaType="Date"/>
-        <collection property="courses" ofType="meng.mybatis.bean.Course">
-            <result column="course_name" property="name"/>
-            <result column="course_id" property="id"/>
-        </collection>
+        <collection property="courses" resultMap="meng.mybatis.mapper.master.CourseDao.courseWithTeacher"/>
     </resultMap>
 
+
     <select id="findAllStudentAndCourse" resultMap="studentCourse">
-        SELECT s.id,s.name,s.age,s.birthday,c.name as course_name,c.id as course_id
+        SELECT s.id,s.name,s.age,s.birthday,c.name as c_name,c.id as c_id
         FROM student_course sc
         JOIN student s ON sc.studentId = s.id
         JOIN course c ON sc.courseId = c.id
 
+    </select>
+
+
+    <select id="findAllSct" resultMap="studentCourse">
+        SELECT s.id,s.name,s.age,s.birthday,c.name as c_name,c.id as c_id,
+        t.id as t_id,t.name as t_name,t.address as t_address
+        FROM student_course sc
+        JOIN student s ON sc.studentId = s.id
+        JOIN course c ON sc.courseId = c.id
+        JOIN teacher t ON t.id = c.teacher_id
     </select>
 
 
@@ -29,7 +37,6 @@
             <if test="age!=null and age!=0">age = #{age}</if>
         </where>
     </select>
-
 
 
 </mapper>

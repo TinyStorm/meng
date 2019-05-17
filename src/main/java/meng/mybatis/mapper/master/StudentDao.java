@@ -23,6 +23,8 @@ public interface StudentDao {
 
     List<Student> findAllStudentAndCourse();
 
+    List<Student> findAllSct();
+
     List<Student> findByCondition(@Param("name") String name, @Param("age") Integer age);
 
     @SelectProvider(type = ConditionProvider.class, method = "condition")
@@ -30,7 +32,7 @@ public interface StudentDao {
 
     @Results({
             @Result(property = "username", column = "name"),
-            @Result(property = "currentAge", column = "age")
+            @Result(property = "currentAge", column = "age"),
     })
     @Select("select * from student")
     List<StudentMap> findStudentMap();
