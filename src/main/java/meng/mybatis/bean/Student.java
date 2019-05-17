@@ -12,5 +12,4 @@ public class Student {
     private int age;
     private Date birthday;
     private List<Course> courses;
-
 }

@@ -1,0 +1,18 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="meng.mybatis.mapper.master.CourseDao">
+    <resultMap id="courseWithTeacher" type="meng.mybatis.bean.Course">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <association property="teacher" javaType="meng.mybatis.bean.Teacher">
+            <id property="id" column="id"></id>
+            <result property="name" column="t_name"/>
+            <result property="address" column="t_address"/>
+        </association>
+
+    </resultMap>
+
+    <select id="findAll">
+
+
+    </select>
+</mapper>
