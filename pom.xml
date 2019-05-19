@@ -19,6 +19,14 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <!--
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+            -->
         </dependency>
 
         <!-- spring boot测试 -->
@@ -78,11 +86,25 @@
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>1.2.7</version>
         </dependency>
+
+        <!--
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        -->
     </dependencies>
 
 
     <build>
+        <finalName>springboot</finalName>
         <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.5.1</version>
@@ -93,8 +115,8 @@
                 </configuration>
             </plugin>
         </plugins>
-
     </build>
+    <packaging>war</packaging>
 
 
 </project>

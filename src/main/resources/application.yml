@@ -6,46 +6,51 @@
 # 此demo基于springboot2.0 + mybatis,jpa也有相关的解决方案,但也是大同小异
 spring:
   datasource:
+    default:
+      driverClassName: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://node4:3306/test?useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: root
     master:
       driverClassName: com.mysql.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/test1?useUnicode=true&characterEncoding=utf-8
+      url: jdbc:mysql://node4:3306/test1?useUnicode=true&characterEncoding=utf-8
       username: root
-      password: root
+      password: root1234
     slave:
       driverClassName: com.mysql.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/test2?useUnicode=true&characterEncoding=utf-8
+      url: jdbc:mysql://node4:3306/test2?useUnicode=true&characterEncoding=utf-8
       username: root
-      password: root
+      password: root12345
   application:
     name: spirng-boot-mongodb
   data:
     mongodb:
-      host: 127.0.0.1
+      host: node4
       port: 27017
       database: test
-  quartz:
-      #相关属性配置
-      properties:
-        org:
-          quartz:
-            scheduler:
-              instanceName: DefaultQuartzScheduler
-              instanceId: AUTO
-            jobStore:
-              class: org.quartz.impl.jdbcjobstore.JobStoreTX
-              driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
-              tablePrefix: QRTZ_
-              isClustered: false
-              clusterCheckinInterval: 10000
-              useProperties: true
-            threadPool:
-              class: org.quartz.simpl.SimpleThreadPool
-              threadCount: 10
-              threadPriority: 5
-              threadsInheritContextClassLoaderOfInitializingThread: true
-            dataSource:
-              url: jdbc:mysql://localhost:3306/test1?characterEncoding=utf-8
-              user: root
-              password: root
-              driver: com.mysql.jdbc.Driver
+#  quartz:
+#    #相关属性配置
+#    properties:
+#      org:
+#        quartz:
+#          scheduler:
+#            instanceName: DefaultQuartzScheduler
+#            instanceId: AUTO
+#          jobStore:
+#            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+#            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+#            tablePrefix: QRTZ_
+#            isClustered: false
+#            clusterCheckinInterval: 10000
+#            useProperties: true
+#          threadPool:
+#            class: org.quartz.simpl.SimpleThreadPool
+#            threadCount: 10
+#            threadPriority: 5
+#            threadsInheritContextClassLoaderOfInitializingThread: true
+#          dataSource:
+#            url: jdbc:mysql://localhost:3306/test1?characterEncoding=utf-8
+#            user: root
+#            password: root
+#            driver: com.mysql.jdbc.Driver
 
