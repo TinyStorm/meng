@@ -1,14 +1,9 @@
 package meng;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-import org.springframework.scheduling.annotation.EnableScheduling;
 
-@SpringBootApplication
-//@EnableScheduling
+
 /**
  * 打成war包方式
  *
@@ -16,6 +11,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * 2.去除web模块的Tomcat依赖并加上servlet依赖
  * 3.入口程序集成SpringBootServletInitializer并重写configure方法
  */
+@SpringBootApplication
+//@EnableCaching
+//@EnableScheduling
 public class Application /*extends SpringBootServletInitializer*/ {
     /*
     @Override

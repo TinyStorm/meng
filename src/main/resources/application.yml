@@ -6,28 +6,34 @@
 # 此demo基于springboot2.0 + mybatis,jpa也有相关的解决方案,但也是大同小异
 spring:
   datasource:
-    default:
-      driverClassName: com.mysql.jdbc.Driver
-      jdbc-url: jdbc:mysql://node4:3306/test?useUnicode=true&characterEncoding=utf-8
-      username: root
-      password: root
     master:
       driverClassName: com.mysql.jdbc.Driver
-      url: jdbc:mysql://node4:3306/test1?useUnicode=true&characterEncoding=utf-8
+      jdbc-url: jdbc:mysql://localhost:3306/test1?useUnicode=true&characterEncoding=utf-8
       username: root
-      password: root1234
+      password: root
     slave:
       driverClassName: com.mysql.jdbc.Driver
-      url: jdbc:mysql://node4:3306/test2?useUnicode=true&characterEncoding=utf-8
+      jdbc-url: jdbc:mysql://localhost:3306/test2?useUnicode=true&characterEncoding=utf-8
       username: root
-      password: root12345
+      password: root
   application:
-    name: spirng-boot-mongodb
+    name: spirng-boot
   data:
     mongodb:
-      host: node4
+      host: localhost
       port: 27017
       database: test
+  redis:
+    host: localhost
+    port: 6379
+    password:
+    jedis:
+      pool:
+        max-active: 8
+        min-idle: 1
+        max-idle: 4
+        max-wait: 6
+    database: 1
 #  quartz:
 #    #相关属性配置
 #    properties:
@@ -54,3 +60,4 @@ spring:
 #            password: root
 #            driver: com.mysql.jdbc.Driver
 
+logging.level.root: info

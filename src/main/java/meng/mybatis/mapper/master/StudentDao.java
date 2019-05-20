@@ -36,6 +36,7 @@ public interface StudentDao {
     })
     @Select("select * from student")
     List<StudentMap> findStudentMap();
+
     @Results({
             @Result(property = "username", column = "name"),
             @Result(property = "currentAge", column = "age")
@@ -44,6 +45,10 @@ public interface StudentDao {
     List<StudentMap> findByNameLike(String like);
 
 
+    @Delete("delete from student where id = #{id}")
+    void delete(int id);
 
+    @Update({"update student set name=#{name},age=#{age},birthday = #{birthday} where id=#{id}"})
+    void update(Student student);
 }
 

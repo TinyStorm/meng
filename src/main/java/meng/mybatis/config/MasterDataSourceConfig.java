@@ -29,7 +29,8 @@ public class MasterDataSourceConfig {
     @ConfigurationProperties(prefix = "spring.datasource.master")
     @Primary
     public DataSource masterDataSource() {
-        return DataSourceBuilder.create().build();
+        DataSource dataSource = DataSourceBuilder.create().build();
+        return dataSource;
     }
 
     /**

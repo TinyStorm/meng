@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Bean;
 
 import javax.sql.DataSource;
 
-@SpringBootConfiguration
-@AutoConfigureOrder(1)
+//@SpringBootConfiguration
+//@AutoConfigureOrder(1)
 public class BaseConfig {
     @Bean("dataSource")
     @ConfigurationProperties(prefix = "spring.datasource.default")

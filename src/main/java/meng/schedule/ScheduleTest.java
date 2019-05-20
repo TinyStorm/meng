@@ -11,7 +11,6 @@ import java.util.concurrent.ThreadPoolExecutor;
 public class ScheduleTest {
     @Scheduled(cron = "*/5 * * * * ?")
     public void test() {
-
         System.out.println("11111111111111");
     }
 }
