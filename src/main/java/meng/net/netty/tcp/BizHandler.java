@@ -9,7 +9,7 @@ public class BizHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         System.out.println(msg);
-        ctx.writeAndFlush("biz handler");
+        ctx.channel().writeAndFlush("biz handler");
     }
 
 }
