@@ -28,10 +28,15 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class LogRecorder {
 
+
+    @Pointcut("within(meng.aop..*)&&@annotation(LogSender)")
+    public void pointcut(){
+    }
+
     /*
         一定执行 在around中的proceed后
      */
-    @Before("within(meng.aop..*)&&@annotation(LogSender)")
+    @Before("pointcut()")
     public void beforeRecord(JoinPoint joinPoint) {
         System.out.println("beforeRecord");
         Object[] objects = joinPoint.getArgs();
@@ -94,9 +99,9 @@ public class LogRecorder {
         System.out.println("before around");
         Object[] args = pjp.getArgs();
         args[0] = args[0] + "123";
-        String rtv = "";
+        String rtv;
         try {
-            rtv = (String) pjp.proceed(args);//此处捕获了异常会吞掉方法本省的异常
+            rtv = (String) pjp.proceed(args);//此处捕获了异常会吞掉方法本身的异常
         } catch (Throwable e) {
             throw e;
         }
