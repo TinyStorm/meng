@@ -59,7 +59,7 @@ public class TestMongoDao {
         Query query = new Query();
         System.out.println(students);
         query.addCriteria(Criteria.where("name").is("Jack"));
-        students = mongoTemplate.find(query,Student.class);
+        students = mongoTemplate.find(query, Student.class);
         System.out.println(students);
 
     }
@@ -79,9 +79,8 @@ public class TestMongoDao {
         List hobby = new ArrayList();
         hobby.add("R6");
         hobby.add("编程");
-        update.set("hobby",hobby);
-        mongoTemplate.updateFirst(new Query(Criteria.where("name").is("王蒙")),update,Student.class);
-
+        update.set("hobby", hobby);
+        mongoTemplate.updateFirst(new Query(Criteria.where("name").is("王蒙")), update, Student.class);
 
     }
 }
