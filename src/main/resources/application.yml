@@ -34,6 +34,7 @@ spring:
         max-idle: 4
         max-wait: 6
     database: 1
+
 #  quartz:
 #    #相关属性配置
 #    properties:

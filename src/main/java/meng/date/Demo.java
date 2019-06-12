@@ -1,7 +1,13 @@
 package meng.date;
 
-import java.io.FileInputStream;
+import meng.mongo.bean.Student;
 
+import java.io.FileInputStream;
+import java.util.TreeSet;
+
+/**
+ * try with resource
+ */
 public class Demo {
     public static void main(String[] args) {
 
@@ -12,5 +18,17 @@ public class Demo {
         } catch (Exception e) {
 
         }
+
+
+        TreeSet set = new TreeSet();
+//        set.add(1);
+//        set.add(2);
+//        set.add(3);
+//        set.add(5);
+//        set.add(0);
+        set.add(new Student());
+        set.add(new Student());
+        set.add(new Student());
+        System.out.println(set);
     }
 }
